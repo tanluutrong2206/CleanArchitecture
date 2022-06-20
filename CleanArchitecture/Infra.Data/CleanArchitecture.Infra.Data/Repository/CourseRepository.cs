@@ -14,6 +14,13 @@ namespace CleanArchitecture.Infra.Data.Repository
         {
             this._context = context;
         }
+
+        public async Task AddAsync(Course course)
+        {
+            await _context.Courses.AddAsync(course);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<Course> GetCourseAsync(int id)
         {
             return await _context.Courses.FindAsync(id) ?? new Course();

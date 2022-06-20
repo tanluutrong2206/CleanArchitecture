@@ -1,15 +1,16 @@
 ﻿using CleanArchitecture.Application.Interfaces;
 using CleanArchitecture.Application.Services;
+using CleanArchitecture.Domain.CommandHandler;
+using CleanArchitecture.Domain.Commands;
+using CleanArchitecture.Domain.Core.Bus;
 using CleanArchitecture.Domain.Interfaces;
+using CleanArchitecture.Infra.Bus;
+using CleanArchitecture.Infra.Data.Context;
 using CleanArchitecture.Infra.Data.Repository;
 
-using Microsoft.Extensions.DependencyInjection;
+using MediatR;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Infra.IoC
 {
@@ -17,11 +18,18 @@ namespace CleanArchitecture.Infra.IoC
     {
         public static void RegisterServices(IServiceCollection services)
         {
+            // Domain InMemoryBus Mediator
+            services.AddScoped<IMediatorHandler, InMemoryBus>();
+
+            // Domain Handler
+            services.AddScoped<IRequestHandler<CreateCourseCommand, bool>, CourseCommandHandler>();
+
             // Application Layer
             services.AddScoped<ICourseService, CourseService>();
 
             // Infra.Data Layer
             services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<UniversityDbContext>();
         }
     }
 }

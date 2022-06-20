@@ -6,5 +6,6 @@ namespace CleanArchitecture.Domain.Interfaces
     {
         Task<IEnumerable<Course>> GetCoursesAsync();
         Task<Course> GetCourseAsync(int id);
+        Task AddAsync(Course course);
     }
 }
