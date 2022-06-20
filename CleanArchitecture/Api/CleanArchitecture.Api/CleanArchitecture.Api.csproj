@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infra.Data\CleanArchitecture.Infra.Data\CleanArchitecture.Infra.Data.csproj" />
+    <ProjectReference Include="..\..\Infra.IoC\CleanArchitecture.Infra.IoC\CleanArchitecture.Infra.IoC.csproj" />
   </ItemGroup>
 
 </Project>

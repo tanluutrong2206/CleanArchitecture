@@ -3,6 +3,8 @@ using CleanArchitecture.Infra.IoC;
 
 using ClearnArchitecture.MVC.Data;
 
+using MediatR;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +21,7 @@ services.AddDatabaseDeveloperPageExceptionFilter();
 services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 services.AddControllersWithViews();
+services.AddMediatR(typeof(Program));
 
 DependencyContainer.RegisterServices(services);
 

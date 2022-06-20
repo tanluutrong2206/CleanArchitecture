@@ -23,6 +23,22 @@ namespace CleanArchitecture.Application.Services
             return _bus.SendCommand(command);
         }
 
+        public async Task<CourseViewModel?> GetCourseAsync(int id)
+        {
+            var course = await _courseRepository.GetCourseAsync(id);
+            if (course == null)
+            {
+                return null;
+            }
+            return new CourseViewModel
+            {
+                Description = course.Description,
+                Id = course.Id,
+                ImageUrl = course.ImageUrl,
+                Name = course.Name
+            };
+        }
+
         public async Task<CourseViewModel> GetCoursesAsync()
         {
             return new CourseViewModel
@@ -30,5 +46,6 @@ namespace CleanArchitecture.Application.Services
                 Courses = await _courseRepository.GetCoursesAsync()
             };
         }
+
     }
 }

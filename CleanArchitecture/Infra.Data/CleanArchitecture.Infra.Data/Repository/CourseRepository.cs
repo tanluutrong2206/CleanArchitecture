@@ -21,14 +21,13 @@ namespace CleanArchitecture.Infra.Data.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Course> GetCourseAsync(int id)
-        {
-            return await _context.Courses.FindAsync(id) ?? new Course();
-        }
-
         public async Task<IEnumerable<Course>> GetCoursesAsync()
         {
             return await _context.Courses.ToListAsync();
+        }
+        public async Task<Course?> GetCourseAsync(int id)
+        {
+            return await _context.Courses.FindAsync(id);
         }
     }
 }
